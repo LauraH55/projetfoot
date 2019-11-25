@@ -9,4 +9,11 @@
 
 .carte{
   text-align: center;
+  font-family: 'Dosis', sans-serif;
+
+}
+
+footer{
+  color: white;
+  font-family: 'Dosis', sans-serif;
 }

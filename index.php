@@ -13,10 +13,13 @@ $reponse->closeCursor();
 ?>
 <?php include('include/head.php')?>
 
+<div class="container">
+  <div class="row">
 <?php foreach ($teams as $teamList) {
 
 ?>
-    <div class="card-deck carte">
+
+    <div class="card-deck col-md-4 mt-5 carte">
       <div class="card">
         <img src="<?php echo $teamList['logo'];?>" class="card-img-top logo" alt="...">
         <div class="card-body">
@@ -27,7 +30,8 @@ $reponse->closeCursor();
 <?php
   }
   ?>
-
+</div>
+  </div>
 <?php include('include/footer.php') ?>
 
 
