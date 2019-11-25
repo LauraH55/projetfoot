@@ -13,6 +13,9 @@ $stmt->bindValue(':id', $id);
 $stmt->execute();
 $team = $stmt->fetch();
 
+$date = new DateTime($team['fundation_date']);
+echo $date->format('d-m-Y');
+
 
 ?>
 
