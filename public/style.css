@@ -17,3 +17,9 @@ footer{
   color: white;
   font-family: 'Dosis', sans-serif;
 }
+
+body{
+  background-image: url(image/stadium.jpg);
+  width: 100%;
+  background-size: cover;
+}

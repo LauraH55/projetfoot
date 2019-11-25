@@ -23,7 +23,9 @@ $reponse->closeCursor();
       <div class="card">
         <img src="<?php echo $teamList['logo'];?>" class="card-img-top logo" alt="...">
         <div class="card-body">
-          <h5 class="card-title"><?php echo $teamList['name'];?></h5>
+          <h5 class="card-title">
+            <a href="team.php?id=<?php echo $teamList['id']; ?>"><?php echo $teamList['name'];?></a>
+          </h5>
         </div>
       </div>
     </div>
