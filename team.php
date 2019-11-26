@@ -32,19 +32,23 @@ $stmt->bindValue(':id_team', $idTeam);
 $stmt->execute();
 $players = $stmt->fetchAll();
 
-$stmt = $db->prepare('SELECT matchs.*, th.name AS team_home_name, ta.name AS team_away_name
+$req = 'SELECT matchs.*, th.name AS team_home_name, ta.name AS team_away_name
   FROM `matchs`
   INNER JOIN teams AS th
   ON matchs.id_team_home = th.id
   INNER JOIN teams AS ta
   ON matchs.id_team_away = ta.id
-  WHERE th.id = :id_team OR ta.id = :id_team');
+  WHERE (th.id = :id_team OR ta.id = :id_team)';
 
+$stmt = $db->prepare($req . ' AND matchs.score_home IS NOT NULL');
 $stmt->bindValue(':id_team', $idTeam);
 $stmt->execute();
-$matchs = $stmt->fetchAll();
+$matchsPlayed = $stmt->fetchAll();
 
-
+$stmt = $db->prepare($req . ' AND matchs.score_home IS NULL');
+$stmt->bindValue(':id_team', $idTeam);
+$stmt->execute();
+$matchsNotPlayed = $stmt->fetchAll();
 
 
 ?>
@@ -97,18 +101,35 @@ $matchs = $stmt->fetchAll();
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Date</th>
             <th scope="col">Domicile</th>
             <th scope="col">Résultats</th>
             <th scope="col">Extérieur</th>
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($matchs as $match): ?>
+          <?php foreach ($matchsPlayed as $match): ?>
             <tr>
-              <td><?php echo $match['date']; ?></td>
               <td><?php echo $match['team_home_name']; ?></td>
               <td><?php echo $match['score_home']; ?> - <?php echo $match['score_away']; ?></td>
+              <td><?php echo $match['team_away_name']; ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+      <h3>Rencontres à venir</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Domicile</th>
+            <th scope="col">Date</th>
+            <th scope="col">Extérieur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($matchsNotPlayed as $match): ?>
+            <tr>
+              <td><?php echo $match['team_home_name']; ?></td>
+                <td><?php echo $match['date']; ?></td>
               <td><?php echo $match['team_away_name']; ?></td>
             </tr>
           <?php endforeach; ?>
