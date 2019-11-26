@@ -80,7 +80,7 @@ $matchs = $stmt->fetchAll();
             <tr>
               <td><?php echo $player['number']; ?></td>
               <td><?php echo $player['name']; ?></td>
-              <td><?php echo $player['birthday_date']; ?></td>
+              <td><?php echo (new DateTime($player['birthday_date']))->format('d/m/Y'); ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
