@@ -23,3 +23,12 @@ body{
   width: 100%;
   background-size: cover;
 }
+
+.description
+{
+  background-color: rgb(255, 255 ,255 ,07);
+  opacity: 0.7;
+  border-radius: 10px;
+  
+
+}
