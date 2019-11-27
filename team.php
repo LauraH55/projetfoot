@@ -73,7 +73,7 @@ $matchsNotPlayed = $stmt->fetchAll();
     <div class="collapse bg-light" id="collapseExample">
       <table class="table">
         <thead class="thead-dark">
-          <tr>
+          <tr style="font-family: 'Dosis', sans-serif;">
             <th scope="col">Numéro</th>
             <th scope="col">Name</th>
             <th scope="col">Date de naissance</th>
@@ -100,7 +100,7 @@ $matchsNotPlayed = $stmt->fetchAll();
     <div class="collapse bg-light" id="collapse2">
       <table class="table">
         <thead class="thead-dark">
-          <tr>
+          <tr style="font-family: 'Dosis', sans-serif;">
             <th scope="col">Domicile</th>
             <th scope="col">Résultats</th>
             <th scope="col">Extérieur</th>
@@ -116,10 +116,10 @@ $matchsNotPlayed = $stmt->fetchAll();
           <?php endforeach; ?>
         </tbody>
       </table>
-      <h3>Rencontres à venir</h3>
+      <h3 style="font-family: 'Dosis', sans-serif;">Rencontres à venir</h3>
       <table class="table">
         <thead class="thead-dark">
-          <tr>
+          <tr style="font-family: 'Dosis', sans-serif;">
             <th scope="col">Domicile</th>
             <th scope="col">Date</th>
             <th scope="col">Extérieur</th>
@@ -133,6 +133,22 @@ $matchsNotPlayed = $stmt->fetchAll();
               <td><?php echo $match['team_away_name']; ?></td>
             </tr>
           <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="dropdown menudr">
+    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">
+     Administratif <?php echo $team['name']; ?>
+    </button>
+    <div class="collapse bg-light" id="collapse3">
+      <table class="table">
+            <tr scope="col"> <td>Site : </td> </tr>
+            <tr scope="col"> <td>Statut : </td> </tr>
+            <tr scope="col"><td>Siège : </td></tr>
+        <tbody>
         </tbody>
       </table>
     </div>
