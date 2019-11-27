@@ -144,11 +144,16 @@ $matchsNotPlayed = $stmt->fetchAll();
      Administratif <?php echo $team['name']; ?>
     </button>
     <div class="collapse bg-light" id="collapse3">
-      <table class="table">
+      <table style="font-family: 'Dosis', sans-serif;" class="table">
             <tr scope="col"> <td>Site : </td> </tr>
-            <tr scope="col"> <td>Statut : </td> </tr>
             <tr scope="col"><td>Siège : </td></tr>
         <tbody>
+          <?php foreach ($teams as $team): ?>
+            <tr>
+              <td><?php echo $team['website']; ?></td>
+                <td><?php echo $team['adress']; ?></td>
+            </tr>
+            <?php endforeach; ?>
         </tbody>
       </table>
     </div>
