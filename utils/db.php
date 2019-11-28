@@ -6,7 +6,7 @@ function dbConnect()
     return $db;
   } catch(Exception $e) {
     $message = $e->getMessage();
-    require('views/500.php');
+    var_dump($message);
     die;
   }
 }
