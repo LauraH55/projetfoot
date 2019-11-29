@@ -12,7 +12,8 @@ $stmt = $db->prepare('SELECT
   c.*,
   t.id AS tid,
   t.name AS tname,
-  t.logo AS tlogo
+  t.logo AS tlogo,
+  t.short_name AS tshortN
   FROM coachs AS c
   INNER JOIN coachs_has_teams as cht
   ON cht.id_coach = c.id
@@ -32,11 +33,12 @@ $date = new DateTime($team['birthday_date']);
   <div class="row">
     <div class="col-md-8" style="font-family: 'Dosis', sans-serif;">
       <h1><?php echo $team['name']; ?></h1>
-      <img  class="pic" src="<?php echo $team['photo'];?>" alt="photo entraineur"><img  class="trainer" src="<?php echo $team['tlogo'];?>" alt="logo">
+      <img  class="pic" src="<?php echo $team['photo'];?>" alt="photo entraineur">
+      <img  class="trainer" src="<?php echo $team['tlogo'];?>" alt="logo">
+      <p class="texte"><strong><?php echo $team['tshortN'];?></strong></p>
       <p>Nom : <strong><?php echo $team['name']; ?></strong></p>
       <p>Date de naissance : <strong><?php echo $date->format('d/m/Y'); ?></strong></p>
       <p>Pays : <strong><?php echo $team['nationality']; ?></strong></p>
-
     </div>
   </div>
 </div>
