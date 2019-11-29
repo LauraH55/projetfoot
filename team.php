@@ -8,10 +8,20 @@ require('utils/db.php');
 
 $db = dbConnect();
 
-$stmt = $db->prepare('SELECT * FROM teams WHERE id = :id');
+$stmt = $db->prepare('SELECT
+  t.*,
+  s.id AS sId,
+  s.name AS sName,
+  s.capacity,
+  s.adress AS sAdress,
+  s.tel
+  FROM teams AS t
+  INNER JOIN stadiums as s
+  WHERE t.id = :id');
 $stmt->bindValue(':id', $idTeam);
 $stmt->execute();
 $team = $stmt->fetch();
+
 
 $date = new DateTime($team['fundation_date']);
 
@@ -49,6 +59,9 @@ $stmt = $db->prepare($req . ' AND matchs.score_home IS NULL');
 $stmt->bindValue(':id_team', $idTeam);
 $stmt->execute();
 $matchsNotPlayed = $stmt->fetchAll();
+
+
+
 
 
 ?>
@@ -145,20 +158,30 @@ $matchsNotPlayed = $stmt->fetchAll();
     </button>
     <div class="collapse bg-light" id="collapse3">
       <table style="font-family: 'Dosis', sans-serif;" class="table">
-            <tr scope="col"> <td>Site : </td> </tr>
-            <tr scope="col"><td>Siège : </td></tr>
-        <tbody>
-          <?php foreach ($teams as $team): ?>
-            <tr>
-              <td><?php echo $team['website']; ?></td>
-                <td><?php echo $team['adress']; ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
+            <tr scope="col"> <td>Site : <strong><?php echo $team['website']; ?></strong></td> </tr>
+            <tr scope="col"><td>Siège : <strong><?php echo $team['adress']; ?></strong></td></tr>
+          </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="dropdown menudr">
+    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapseExample">
+     Stade <?php echo $team['name']; ?>
+    </button>
+    <div class="collapse bg-light" id="collapse4">
+      <table style="font-family: 'Dosis', sans-serif;" class="table">
+          <tr style="font-family: 'Dosis', sans-serif;">
+            <tr scope="col"> <td>Stade : <strong><?php echo $team['sName']; ?></strong></td></tr>
+            <tr scope="col"> <td>Capacité : <strong><?php echo $team['capacity']; ?></strong></td></tr>
+            <tr scope="col"> <td>Adresse du stade : <strong><?php echo $team['sAdress']; ?></strong></td></tr>
+            <tr scope="col"> <td>Tél. Stade : <strong><?php echo $team['tel']; ?></strong></td></tr>
+          </tr>
       </table>
     </div>
   </div>
 </div>
+
 
 
 
