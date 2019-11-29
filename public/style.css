@@ -30,10 +30,15 @@ body{
   opacity: 0.7;
   border-radius: 10px;
 
+
 }
 
 .menudr{
   display: grid;
   margin-top: 1em;
 
+}
+
+.pic{
+  margin-bottom: 1rem;
 }

@@ -14,9 +14,22 @@ $stmt = $db->prepare('SELECT
   s.name AS sName,
   s.capacity,
   s.adress AS sAdress,
-  s.tel
+  s.tel,
+  c.id AS cId,
+  c.name AS cName,
+  c.birthday_date AS cBd,
+  c.birthday_place AS cBp,
+  c.nationality AS cN,
+  c.photo AS cP,
+  c.link AS cL,
+  cht.id_coach,
+  cht.id_team
   FROM teams AS t
+  INNER JOIN coachs_has_teams as cht
+  ON t.id = cht.id_team
   INNER JOIN stadiums as s
+  INNER JOIN coachs as c
+  ON c.id = cht.id_coach
   WHERE t.id = :id');
 $stmt->bindValue(':id', $idTeam);
 $stmt->execute();
@@ -75,6 +88,10 @@ $matchsNotPlayed = $stmt->fetchAll();
       <p>Nom : <?php echo $team['name']; ?> </p>
       <p>Fondé en : <?php echo $date->format('d/m/Y'); ?> </p>
       <p>Président : <?php echo $team['president']; ?></p>
+      <p>
+        Entraîneur :
+        <a href="./coach.php?id=<?php echo $team['cId']; ?>"><?php echo $team['cName']; ?></a>
+      </p>
     </div>
   </div>
 </div>
